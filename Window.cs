@@ -1,4 +1,4 @@
-﻿using OpenTK.Windowing.Desktop;
+using OpenTK.Windowing.Desktop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,42 +12,23 @@ using OpenTK.Mathematics;
 
 namespace Test
 {
-    static class Constant
+    static class Constants
     {
         public const string path = "../../../Shader/";
 
     }
-    public class Window : GameWindow
+    public class window : GameWindow
     {
         private readonly string path = "D:/Coding Area/Semester 4/GrafKom/Test/Shader/";
 
+        //Assets1[] _object = new Assets1[7];
 
-        //float[] data = {
-        //    //x     //y    //y   //r    //g   //b
-        //    -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // vertex 1 merah
-        //    0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // vertex 2 hijau
-        //    0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // vertex 3 biru
-        //};
+        Assets_3D[] _object3d = new Assets_3D[10];
 
-        //float[] data = { // ini untuk persergi
-        //    0.5f, 0.5f, 0.0f,// kanan atas
-        //    0.5f, -0.5f, 0.0f,// kanan bawah
-        //    -0.5f, -0.5f, 0.0f,// kiri atas
-        //    -0.5f, 0.5f, 0.0f,// kiri bawah
-        //};
-
-        //uint[] data_element =
-        //{
-        //    0,1,3, // segetiga pertama 
-        //    1,2,3, // segitiga kedua
-
-        //};
-
-
-        List<Assets_3D> objectlist = new List<Assets_3D> ();
         double _time;
+        float degr = 0;
 
-        public Window (GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
+        public window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
         {
             CenterWindow();
@@ -58,37 +39,78 @@ namespace Test
             base.OnLoad();
             GL.ClearColor(0.75f, 0.77f, 0.55f, 1.0f);
 
-            var ellipsoid1 = new Assets_3D(new Vector3(0, 0.5f, 1));
-            //radius nya (parameter ke 4 - 6: di bawah 0.5f
-            ellipsoid1.createEllipsoid(0, 0, 0, 0.4f, 0.4f, 0.4f);
-            objectlist.Add(ellipsoid1);
+            _object3d[0] = new Assets_3D();
+            _object3d[0].createPyramidBox(-0.54f, -0.43f, 0, 0f);
+            //_object3d[0].createEllipsoid2(0.2f, 0.2f, 0.2f, 0.0f, 0.0f, 0.0f, 72, 24);
+            //_object3d[0].createEllipsoid(0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f);
+            //_object3d[0].addChild(-0.54f, -0.68f, 0.0f, 0.25f,0);
+            //_object3d[0].addChild(-0.54f, -0.82f, 0.0f, 0.25f,0);
+            //_object3d[0].addChild(-0.54f, -0.96f, 0.0f, 0.25f,0);
 
-            foreach (Assets_3D i in objectlist)
-            {
-                i.Onload();
-            }
+            _object3d[1] = new Assets_3D();
+            //_object3d[1].createNewEllipsoid(0.2f, 0.5f, 0.2f, 0.0f, 0.0f, 0.0f, 72, 24);
+            _object3d[1].createBoxVertices(-0.54f, -0.0f, 0, 0.28f);
+            _object3d[1].addChild(-0.54f, -0.09f, 0, 0.20f,0);
+            _object3d[1].addChild(-0.54f, -0.30f, 0, 0.25f,0);
+            _object3d[1].addChild(-0.54f, -0.44f, 0, 0.25f,0);
+            _object3d[1].addChild(-0.54f, -0.58f, 0, 0.25f,0);
+            _object3d[1].addChild(-0.54f, -0.63f, 0, 0.25f,0);
+
+            _object3d[1].addChild(-0.34f, -0.34f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.33f, -0.44f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.32f, -0.54f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.31f, -0.58f, 0, 0.15f, 0);
+
+            _object3d[1].addChild(-0.74f, -0.34f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.75f, -0.44f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.76f, -0.54f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.77f, -0.58f, 0, 0.15f, 0);
+
+            //kaki
+
+            _object3d[1].addChild(-0.64f, -0.78f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.64f, -0.87f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.64f, -0.98f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.64f, -1.04f, 0, 0.15f, 0);
+
+            _object3d[1].addChild(-0.44f, -0.78f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.44f, -0.87f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.44f, -0.98f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.44f, -1.04f, 0, 0.15f, 0);
 
 
+
+            _object3d[0].load(Constants.path + "shader.vert", Constants.path + "shader.frag", Size.X, Size.Y);
+            _object3d[1].load(Constants.path + "shader.vert", Constants.path + "shader.frag", Size.X, Size.Y);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args) // ini update tiap frame
         {
             base.OnRenderFrame(args);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            _time += 7.0 * args.Time;
+
+            //Matrix4 temp = Matrix4.Identity;
+            //temp += temp * Matrix4.CreateTranslation(0.0f, 0.0f, 1.0f);
+            //deg += MathHelper.DegreesToRadians(0.01f);
+            //temp = temp * Matrix4.CreateRotationX(deg);
+            //_object3d[0].render(0, temp);
+
+            _time += args.Time;
             Matrix4 temp = Matrix4.Identity;
-
-            //int vertexColorLocation = GL.GetUniformLocation(_shader.Handle,"unicolor");
-            //GL.Uniform4(vertexColorLocation, 0.78f, 0.44f, 0.52f, 1.0f);
-
-            foreach (Assets_3D i in objectlist)
-            {
-                i.Onrender(1,_time,temp);
-            }
+            temp = temp * Matrix4.CreateTranslation(0.5f, 0.5f, 0.0f);
+            degr += MathHelper.DegreesToRadians(0.05f);
+            temp = temp * Matrix4.CreateRotationY(degr);
+            //_object3d[0].rotate(_object3d[0]._centerPosition, _object3d[0]._euler[1], 0.32f);
+            _object3d[0].render(0.43f, 0.54f, 0.63f, 3, _time, temp);
+            _object3d[1].render(0.43f, 0.54f, 0.63f, 3, _time, temp);
 
             SwapBuffers();
 
+        }
 
+        protected override void OnUnload()
+        {
+            base.OnUnload();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)// ini jalan berdasarkan fps kita, kalau yang onrenderframe sudah 60 frame maka fungsi ini akan jalan
@@ -111,6 +133,21 @@ namespace Test
             if (key_input.IsKeyReleased(Keys.A))
             {
                 Console.WriteLine("Key A Sudah ditekan");
+            }
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (e.Button == MouseButton.Left)
+            {
+                float _x = (MousePosition.X - Size.X / 2) / (Size.X / 2);// ini buat normalisasiin
+                float _y = -(MousePosition.Y - Size.Y / 2) / (Size.Y / 2);// dikasi minus biar ndk kebalek
+
+                Console.WriteLine("x = " + _x + " y = " + _y);
+                //_object[5].updateMousePosition(_x, _y);
+
             }
         }
 
