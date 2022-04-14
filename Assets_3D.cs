@@ -35,6 +35,7 @@ namespace Test
         Matrix4 _projection;
         Matrix4 _model;
 
+        public Vector3 colors;
         public Vector3 _centerPosition = new Vector3(0, 0, 0);
         public List<Vector3> _euler = new List<Vector3>();
         public List<Assets_3D> Child;
@@ -52,6 +53,12 @@ namespace Test
             _vertices = new List<Vector3>();
             setdefault();
         }
+        public Assets_3D(Vector3 color)
+        {
+            this.colors = color;
+            setdefault();
+        }
+
 
         public void setdefault()
         {
@@ -108,7 +115,7 @@ namespace Test
             }
         }
 
-        public void render(float r, float g, float b, int pilihan, double time, Matrix4 temp)
+        public void render(float r, float g, float b, int pilihan, double time, Matrix4 temp,Matrix4 camera_view, Matrix4 camera_projection)
         {
             _shader.Use();
 
@@ -128,8 +135,8 @@ namespace Test
             _model = temp;
 
             _shader.SetMatrix4("model", _model);
-            _shader.SetMatrix4("view", _view);
-            _shader.SetMatrix4("projection", _projection);
+            _shader.SetMatrix4("view", camera_view);
+            _shader.SetMatrix4("projection", camera_projection);
 
             //Matrix4 model = Matrix4.Identity;
             //model += model * Matrix4.CreateTranslation(0.0f, 0.3f, 0.0f);
@@ -159,7 +166,7 @@ namespace Test
             }
             foreach (var item in Child)
             {
-                item.render(r, g, b, pilihan, time, temp);
+                item.render(r, g, b, pilihan, time, temp, camera_view, camera_projection);
             }
 
 
@@ -393,6 +400,8 @@ namespace Test
                 3,6,7
             };
         }
+
+       
         public void createJajarBox(float x, float y, float z, float length)
         {
             _centerPosition.X = x;
@@ -553,7 +562,7 @@ namespace Test
             for (int i = 0; i <= stackCount; ++i)
             {
                 StackAngle = pi / 2 - i * stackStep;
-                x = radiusX * (float)Math.Cos(StackAngle);
+                x = radiusX * (float)Math.Sin(StackAngle);
                 y = radiusY * (float)Math.Cos(StackAngle);
                 z = radiusZ * (float)Math.Sin(StackAngle);
 
