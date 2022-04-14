@@ -115,22 +115,12 @@ namespace Test
             }
         }
 
-        public void render(float r, float g, float b, int pilihan, double time, Matrix4 temp,Matrix4 camera_view, Matrix4 camera_projection)
+        public void render(int pilihan, double time, Matrix4 temp,Matrix4 camera_view, Matrix4 camera_projection)
         {
             _shader.Use();
-
-            //Ambil uniform dari shader untuk warna
-            int vertexColorLocation = GL.GetUniformLocation(_shader.Handle, "unicolor");
-            if (_color.Length != 0)
-            {
-                GL.Uniform4(vertexColorLocation, _color[0], _color[1], _color[2], _color[3]);
-            }
-            else
-            {
-                GL.Uniform4(vertexColorLocation, r, g, b, 1.0f);
-            }
-
             GL.BindVertexArray(_vertexArrayObject);
+
+            _shader.SetVector3("unicolor", colors);
 
             _model = temp;
 
@@ -166,7 +156,7 @@ namespace Test
             }
             foreach (var item in Child)
             {
-                item.render(r, g, b, pilihan, time, temp, camera_view, camera_projection);
+                item.render(pilihan, time, temp, camera_view, camera_projection);
             }
 
 
@@ -750,9 +740,9 @@ namespace Test
             }
         }
 
-        public void addChild(float x, float y, float z, float length,int pilihan)
+        public void addChild(float x, float y, float z, float length,int pilihan,Vector3 colors)
         {
-            Assets_3D newChild = new Assets_3D();
+            Assets_3D newChild = new Assets_3D(colors);
             if(pilihan == 0)
             {
                 newChild.createBoxVertices(x, y, z, length);
