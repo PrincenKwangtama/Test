@@ -41,39 +41,39 @@ namespace Test
             base.OnLoad();
             GL.ClearColor(0.75f, 0.77f, 0.55f, 1.0f);
 
-            _object3d[0] = new Assets_3D();
+            _object3d[0] = new Assets_3D(new Vector3(0.5f, 0.5f, 0));
             //dinidng bawah kiri
             _object3d[0].createBoxVertices(0.10f, -0.10f, 0, 0.18f);
-            _object3d[0].addChild(0.10f, -0.23f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.10f, -0.30f, 0, 0.15f, 0);
-            _object3d[0].addChild(0.10f, -0.44f, 0, 0.15f, 0);
-            _object3d[0].addChild(0.10f, -0.58f, 0, 0.15f, 0);
-            _object3d[0].addChild(0.10f, -0.61f, 0, 0.15f, 0);
+            _object3d[0].addChild(0.10f, -0.23f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.10f, -0.30f, 0, 0.15f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.10f, -0.44f, 0, 0.15f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.10f, -0.58f, 0, 0.15f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.10f, -0.61f, 0, 0.15f, 0, new Vector3(0.5f, 0.5f, 0));
 
             //tangan
-            _object3d[0].addChild(-0.02f, -0.34f, 0, 0.10f, 0);
-            _object3d[0].addChild(-0.05f, -0.36f, 0, 0.10f, 0);
-            _object3d[0].addChild(-0.07f, -0.43f, 0, 0.10f, 0);
-            _object3d[0].addChild(-0.05f, -0.52f, 0, 0.10f, 0);
-            _object3d[0].addChild(-0.03f, -0.58f, 0, 0.10f, 0);
+            _object3d[0].addChild(-0.02f, -0.34f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(-0.05f, -0.36f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(-0.07f, -0.43f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(-0.05f, -0.52f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(-0.03f, -0.58f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
 
-            _object3d[0].addChild(0.22f, -0.34f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.25f, -0.36f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.27f, -0.43f, 0f, 0.10f, 0);
-            _object3d[0].addChild(0.25f, -0.52f, 0f, 0.10f, 0);
-            _object3d[0].addChild(0.23f, -0.58f, 0f, 0.10f, 0);
+            _object3d[0].addChild(0.22f, -0.34f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.25f, -0.36f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.27f, -0.43f, 0f, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.25f, -0.52f, 0f, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.23f, -0.58f, 0f, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
 
 
             //kaki
-            _object3d[0].addChild(0.16f, -0.73f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.16f, -0.81f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.16f, -0.89f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.16f, -0.97f, 0, 0.10f, 0);
+            _object3d[0].addChild(0.16f, -0.73f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.16f, -0.81f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.16f, -0.89f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.16f, -0.97f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
 
-            _object3d[0].addChild(0.04f, -0.73f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.04f, -0.81f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.04f, -0.89f, 0, 0.10f, 0);
-            _object3d[0].addChild(0.04f, -0.97f, 0, 0.10f, 0);
+            _object3d[0].addChild(0.04f, -0.73f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.04f, -0.81f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.04f, -0.89f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
+            _object3d[0].addChild(0.04f, -0.97f, 0, 0.10f, 0, new Vector3(0.5f, 0.5f, 0));
 
             //_object3d[0].createEllipsoid2(0.2f, 0.2f, 0.2f, 0.0f, 0.0f, 0.0f, 72, 24);
             //_object3d[0].createEllipsoid(0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f);
@@ -81,36 +81,36 @@ namespace Test
             //_object3d[0].addChild(-0.54f, -0.82f, 0.0f, 0.25f,0);
             //_object3d[0].addChild(-0.54f, -0.96f, 0.0f, 0.25f,0);
 
-            _object3d[1] = new Assets_3D();
+            _object3d[1] = new Assets_3D(new Vector3(0.23f, 0.76f, 0.33f));
             //_object3d[1].createNewEllipsoid(0.2f, 0.5f, 0.2f, 0.0f, 0.0f, 0.0f, 72, 24);
             _object3d[1].createBoxVertices(-0.54f, -0.10f, 0, 0.18f);
-            _object3d[1].addChild(-0.54f, -0.23f, 0, 0.10f,0);
-            _object3d[1].addChild(-0.54f, -0.30f, 0, 0.15f,0);
-            _object3d[1].addChild(-0.54f, -0.44f, 0, 0.15f, 0);
-            _object3d[1].addChild(-0.54f, -0.58f, 0, 0.15f, 0);
-            _object3d[1].addChild(-0.54f, -0.61f, 0, 0.15f, 0);
+            _object3d[1].addChild(-0.54f, -0.23f, 0, 0.10f,0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.54f, -0.30f, 0, 0.15f,0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.54f, -0.44f, 0, 0.15f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.54f, -0.58f, 0, 0.15f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.54f, -0.61f, 0, 0.15f, 0, new Vector3(0.23f, 0.76f, 0.33f));
 
             //tangan
-            _object3d[1].addChild(-0.42f, -0.34f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.41f, -0.44f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.40f, -0.54f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.39f, -0.58f, 0, 0.10f, 0);
+            _object3d[1].addChild(-0.42f, -0.34f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.41f, -0.44f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.40f, -0.54f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.39f, -0.58f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
 
-            _object3d[1].addChild(-0.66f, -0.34f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.67f, -0.44f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.68f, -0.54f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.69f, -0.58f, 0, 0.10f, 0);
+            _object3d[1].addChild(-0.66f, -0.34f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.67f, -0.44f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.68f, -0.54f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.69f, -0.58f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
 
             //kaki
-            _object3d[1].addChild(-0.60f, -0.73f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.60f, -0.81f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.60f, -0.89f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.60f, -0.97f, 0, 0.10f, 0);
+            _object3d[1].addChild(-0.60f, -0.73f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.60f, -0.81f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.60f, -0.89f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.60f, -0.97f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
 
-            _object3d[1].addChild(-0.48f, -0.73f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.48f, -0.81f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.48f, -0.89f, 0, 0.10f, 0);
-            _object3d[1].addChild(-0.48f, -0.97f, 0, 0.10f, 0);
+            _object3d[1].addChild(-0.48f, -0.73f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.48f, -0.81f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.48f, -0.89f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
+            _object3d[1].addChild(-0.48f, -0.97f, 0, 0.10f, 0, new Vector3(0.23f, 0.76f, 0.33f));
 
 
             _object3d[0].load(Constants.path + "shader.vert", Constants.path + "shader.frag", Size.X, Size.Y);
@@ -139,8 +139,8 @@ namespace Test
             //temp = temp * Matrix4.CreateRotationY(degr);
 
             //_object3d[0].rotate(_object3d[0]._centerPosition, _object3d[0]._euler[1], 0.32f);
-            _object3d[0].render(0.43f, 0.54f, 0.63f, 3, _time, temp,_camera.GetViewMatrix(),_camera.GetProjectionMatrix());
-            _object3d[1].render(0.43f, 0.54f, 0.63f, 3, _time, temp, _camera.GetViewMatrix(), _camera.GetProjectionMatrix());
+            _object3d[0].render(3, _time, temp,_camera.GetViewMatrix(),_camera.GetProjectionMatrix());
+            _object3d[1].render(3, _time, temp, _camera.GetViewMatrix(), _camera.GetProjectionMatrix());
 
             SwapBuffers();
 
