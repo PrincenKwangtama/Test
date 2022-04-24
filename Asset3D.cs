@@ -241,7 +241,7 @@ namespace Tes
 
             RotateOnZero(1, 45);
             RotateOnZero(0, 30);
-
+           
             Child[childIndex].RotateOnCore(axis, angle);
         }
 
@@ -266,8 +266,18 @@ namespace Tes
             }
         }
 
+        public void Translate(float x,float y,float z)
+        {
+            model = model * Matrix4.CreateTranslation(_x, _y, _z);
+
+            foreach (var item in Child)
+            {
+                item.Translate(x, y, z);
+            }
+        }
+
         public void Scale(float scale)
-        {            
+        {
             RotateOnZero(0, -30);
             RotateOnZero(1, -45);
 
@@ -281,7 +291,7 @@ namespace Tes
             RotateOnZero(0, 30);
         }
 
-        public void createReversePyramidBox(bool createObj,float x, float y, float z, float length,float wide,float depth,float slope)
+        public void createTrapezoid(float x, float y, float z, float length,float wide,float depth,float slope)
         {
             _x = x;
             _y = y;
@@ -896,7 +906,7 @@ namespace Tes
                     temp_vector.X = x + (float)Math.Cos(i) * length;
                     temp_vector.Y = y + (float)Math.Sin(i) * heigth - crescWide;
                     temp_vector.Z = z;
-                    _vertices.Add(temp_vector);
+                    _vertices.Add(temp_vector);                    
                 }
             }
             else
@@ -912,7 +922,7 @@ namespace Tes
                     temp_vector.X = x + (float)Math.Cos(i) * length;
                     temp_vector.Y = y + (float)Math.Sin(i) * heigth - crescWide;
                     temp_vector.Z = z;
-                    _vertices.Add(temp_vector);
+                    _vertices.Add(temp_vector);                    
                 }
             }
         }
@@ -1123,6 +1133,13 @@ namespace Tes
             newChild.createEllipsoid2(x, y, z, radX, radY, radZ, sectorCount, stackCount);
             Child.Add(newChild);
             childModel.Add(Matrix4.Identity);
+        }
+
+        public void addChildElipsoid(float radiusX, float radiusY, float radiusZ, float _x, float _y, float _z, float r, float g, float b, float alpha)
+        {
+            Asset3D newChild = new Asset3D(r, g, b, alpha);
+            newChild.createEllipsoid(radiusX, radiusY, radiusZ, _x, _y, _z);
+            Child.Add(newChild);
         }
     }
 }
