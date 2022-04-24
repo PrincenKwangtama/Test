@@ -88,7 +88,7 @@ namespace Tes
             
             //atap
             _object3d.Add(new Asset3D(0.55f,0.55f,0.55f,1f));
-            _object3d[0].createReversePyramidBox(true,0, 0, 0,1.8f,0.8f,0.4f,0.2f);
+            _object3d[0].createTrapezoid(0, 0, 0,1.8f,0.8f,0.4f,0.2f);
             
             //tiang tegak
             _object3d.Add(new Asset3D(1f,1f,1f,1f));
@@ -134,6 +134,10 @@ namespace Tes
             _object3d.Add(new Asset3D(1f, 1f, 1f, 1f));
             _object3d[7].createPararelogram(-0.38f, 0.35f, 0.46f, 0.05f, 0.05f, 0.8f, 0.6f);
 
+            //tangga gedung
+            _object3d.Add(new Asset3D(0.9f, 0.9f, 0.9f, 1f));
+            _object3d[8].createBoxVertices(-0.48f, 0.7f, -1.2f, 0.07f, 0.05f, 0.18f);
+
             for (int local = 0; local < 1; local++)
             {
                 float j = -0.95f;
@@ -169,96 +173,261 @@ namespace Tes
 
                 _object3d[7].createPararelogramChild(-0.98f, 0.35f, 0.46f, 0.05f, 0.05f, 0.8f, 0.6f);
                 _object3d[7].createPararelogramChild(-0.38f, 0.35f, -2.06f, 0.05f, 0.05f, 0.78f, 0.6f);
-                _object3d[6].createBoxChild(-0.48f, 0.75f, -1.24f, 0.05f, 0.05f, 0.13f,0.9f,0.9f,0.9f,1f);
-            }
 
+                _object3d[6].createBoxChild(-0.48f, 0.75f, -1.24f, 0.05f, 0.05f, 0.13f,0.9f,0.9f,0.9f,1f);
+
+                
+                float n = -1.2f;
+                for(float i = 0.6f; i > 0; i -= 0.1f)
+                {
+                    n = n + 0.04f;
+                    _object3d[8].createBoxChild(-0.48f, i, n, 0.07f, 0.05f, 0.18f);
+                }
+                
+
+                
+            }
+            
             //gedung miring abu2
             _object3d.Add(new Asset3D(0.5f, 0.5f, 0.5f, 1f));
-            _object3d[8].createPararelogram(0,-0.15f,2.38f,0.68f,2.5f,1.4f,0.3f);
+            _object3d[9].createPararelogram(0,-0.15f,2.38f,0.68f,2.5f,1.4f,0.3f);
 
             //logo ukp 
             _object3d.Add(new Asset3D(1f, 1f, 1f, 1f));
-            _object3d[9].createTube(-0.8f, 0.08f, 0.4f, 0.09f, 0.05f,1,true);
-            _object3d[9].createTubeChild(-0.8f, 0.08f, 0.46f, 0.07f, 0.01f, 0.4, true, 0.8f, 0.8f, 0.8f, 1f);
-            _object3d[9].createTubeChild(-0.8f, 0.08f, 0.45f, 0.07f, 0.01f, 1, false, 0.2f, 0.2f, 0.8f, 1f);
-            _object3d[9].createBoxChild(-0.78f, 0.037f, 0.465f, 0.02f, 0.045f, 0.01f,0,0,0,1f);
-            _object3d[9].createBoxChild(-0.82f, 0.037f, 0.465f, 0.02f, 0.045f, 0.01f, 0, 0, 0, 1f);
-            _object3d[9].createBoxChild(-0.78f, 0.037f, 0.472f, 0.001f, 0.045f, 0.01f);
-            _object3d[9].createBoxChild(-0.82f, 0.037f, 0.472f, 0.001f, 0.045f, 0.01f);
-            _object3d[9].createBoxChild(-0.8f, 0.11f, 0.46f, 0.07f, 0.01f, 0.01f);
-            _object3d[9].createBoxChild(-0.8f, 0.095f, 0.46f, 0.01f, 0.09f, 0.01f);
-            _object3d[9].createCrescentChild(-0.842f,0.094f,0.46f, 0.038f,0.025f, 0.0075f, true,1f,1f,0,1f);
-            _object3d[9].createCrescentChild(-0.758f, 0.094f, 0.46f, 0.038f, 0.025f, 0.0075f, true, 1f, 1f, 0, 1f);
+            _object3d[10].createTube(-0.8f, 0.08f, 0.4f, 0.09f, 0.05f,1,true);
+            _object3d[10].createTubeChild(-0.8f, 0.08f, 0.46f, 0.07f, 0.01f, 0.4, true, 0.8f, 0.8f, 0.8f, 1f);
+            _object3d[10].createTubeChild(-0.8f, 0.08f, 0.45f, 0.07f, 0.01f, 1, false, 0.2f, 0.2f, 0.8f, 1f);
+            _object3d[10].createBoxChild(-0.78f, 0.037f, 0.465f, 0.02f, 0.045f, 0.01f,0,0,0,1f);
+            _object3d[10].createBoxChild(-0.82f, 0.037f, 0.465f, 0.02f, 0.045f, 0.01f, 0, 0, 0, 1f);
+            _object3d[10].createBoxChild(-0.78f, 0.037f, 0.472f, 0.001f, 0.045f, 0.01f);
+            _object3d[10].createBoxChild(-0.82f, 0.037f, 0.472f, 0.001f, 0.045f, 0.01f);
+            _object3d[10].createBoxChild(-0.8f, 0.11f, 0.46f, 0.07f, 0.01f, 0.01f);
+            _object3d[10].createBoxChild(-0.8f, 0.095f, 0.46f, 0.01f, 0.09f, 0.01f);
+            _object3d[10].createCrescentChild(-0.842f,0.094f,0.46f, 0.038f,0.025f, 0.0075f, true,1f,1f,0,1f);
+            _object3d[10].createCrescentChild(-0.758f, 0.094f, 0.46f, 0.038f, 0.025f, 0.0075f, true, 1f, 1f, 0, 1f);
 
             //tulisan ukp
-            //_object3d.Add(new Asset3D(1f, 1f, 1f, 1f));
+            _object3d.Add(new Asset3D(1f, 1f, 1f, 1f));
             //u
-            //_object3d[10].createBoxVertices(-0.6f,0.08f,0.4f,0.05f,0.1f,0.05f);
-            //_object3d[10].createRingChild(-0.55f,0.05f,0.4f,0.075f,0.025f,0.05f,-180,0);
-            //_object3d[10].createBoxChild(-0.5f,0.08f,0.4f, 0.05f, 0.1f, 0.05f);
+            _object3d[11].createBoxVertices(-0.6f,0.08f,0.4f,0.05f,0.1f,0.05f);
+            _object3d[11].createRingChild(-0.55f,0.05f,0.4f,0.075f,0.025f,0.05f,-180,0);
+            _object3d[11].createBoxChild(-0.5f,0.08f,0.4f, 0.05f, 0.1f, 0.05f);
 
             //k
-            //_object3d[10].createBoxChild(-0.4f, 0.06f, 0.4f, 0.05f, 0.15f, 0.05f);
+            _object3d[11].createBoxChild(-0.4f, 0.05f, 0.4f, 0.05f, 0.16f, 0.05f);
+            _object3d[11].createPararelogramChild(-0.3f, 0.01f, 0.4f, 0.06f, 0.05f, 0.08f, 0.15f);
+            _object3d[11].createPararelogramChild(-0.3f, 0.09f, 0.4f, 0.06f, 0.05f, 0.08f, 0.15f);
 
             //p
-            //_object3d[10].createBoxChild(-0.2f, 0.06f, 0.4f, 0.05f, 0.15f, 0.05f);
-
-            /*
+            _object3d[11].createBoxChild(-0.2f, 0.05f, 0.4f, 0.05f, 0.16f, 0.05f);
+            _object3d[11].createBoxChild(-0.155f, 0.11f, 0.4f, 0.05f, 0.04f, 0.05f);
+            _object3d[11].createBoxChild(-0.155f, 0.05f, 0.4f, 0.05f, 0.04f, 0.05f);
+            _object3d[11].createRingChild(-0.135f, 0.081f, 0.4f, 0.0475f, 0.01f, 0.025f, -90, 90);
+                       
             //orang 1
             _object3d.Add(new Asset3D(0.87f, 0.68f, 0.45f, 1f));
-            _object3d[11].createBoxVertices(-1.6f, -0.17f, 0, 0.15f,0.15f,0.15f);
-            _object3d[11].addChild(-1.6f, -0.17f, 0, 0.15f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[11].addChild(-1.65f, -0.15f, 0.07f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
-            _object3d[11].addChild(-1.63f, -0.15f, 0.07f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.55f, -0.15f, 0.07f, 0.02f, 0, 0.99f, 0.99f, 0.99f, 1f);
-            _object3d[11].addChild(-1.57f, -0.15f, 0.07f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.61f, -0.20f, 0.07f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.59f, -0.20f, 0.07f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
-
-            //topi
             
-            _object3d[11].addChild(-1.67f, -0.08f, 0.05f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.67f, -0.08f, 0.08f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.67f, -0.08f, 0.13f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.62f, -0.08f, 0.05f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.62f, -0.08f, 0.08f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.62f, -0.08f, 0.13f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            //muka
+            _object3d.Add(new Asset3D(0.87f, 0.68f, 0.45f, 1f));
 
-            _object3d[11].addChild(-1.57f, -0.08f, 0.05f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.57f, -0.08f, 0.08f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.57f, -0.08f, 0.13f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            //_object3d[0].createBoxVertices(-1.6f, -0.10f, 0, 0.15f);
+            _object3d[13].createBoxVertices(-1.6f, -0.17f, 0, 0.15f,0.15f,0.15f);
+            _object3d[13].addChild(-1.53f, -0.15f, 0.05f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
+            _object3d[13].addChild(-1.53f, -0.15f, 0.03f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChild(-1.53f, -0.15f, -0.05f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
+            _object3d[13].addChild(-1.53f, -0.15f, -0.03f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChild(-1.53f, -0.20f, 0.01f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChild(-1.53f, -0.20f, -0.01f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
 
-            _object3d[11].addChild(-1.53f, -0.08f, 0.05f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.53f, -0.08f, 0.08f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            _object3d[11].addChild(-1.53f, -0.08f, 0.13f, 0.05f, 0, 0.13f, 0.13f, 0.13f, 1f);
-            
+            //rambut
+            _object3d[13].addChildBalok(-1.6f, -0.085f, 0.00f, 0.15f, 0.02f, 0.15f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            ////rambut belakang
+            _object3d[13].addChildBalok(-1.68f, -0.145f, -0f, 0.02f, 0.14f, 0.15f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            //rambut samping
+            _object3d[13].addChildBalok(-1.65f, -0.145f, -0.085f, 0.08f, 0.14f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChildBalok(-1.6f, -0.125f, -0.085f, 0.08f, 0.10f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChildBalok(-1.545f, -0.110f, -0.085f, 0.04f, 0.07f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            _object3d[13].addChildBalok(-1.65f, -0.145f, 0.085f, 0.08f, 0.14f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChildBalok(-1.6f, -0.125f, 0.085f, 0.08f, 0.10f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[13].addChildBalok(-1.545f, -0.110f, 0.085f, 0.04f, 0.07f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            ////rambut depan
+            _object3d[13].addChildBalok(-1.53f, -0.095f, 0f, 0.02f, 0.04f, 0.19f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
 
             //badan
-            _object3d[11].addChild(-1.6f, -0.26f, 0, 0.07f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[11].addChildBalok(-1.6f, -0.44f, 0f, 0.12f, 0.33f, 0.12f, 1, 0.54f, 0.64f, 0.48f, 1f);
+            _object3d[13].addChild(-1.6f, -0.26f, 0, 0.07f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChildBalok(-1.6f, -0.44f, 0f, 0.12f, 0.33f, 0.12f, 1, 0.05f, 0.31f, 0.55f, 1f);
+
+            //Toga
+            _object3d[13].addChildElipsoid(0.03f, 0.03f, 0.03f, -1.6f, -0.07f, 0f, 0.01f, 0.25f, 0.53f, 1f);
+            _object3d[13].addChildBalok(-1.59f, -0.04f, -0.005f, 0.12f, 0.01f, 0.12f, 1, 0.01f, 0.25f, 0.53f, 1f);
 
             //tangan
-            _object3d[11].addChild(-1.70f, -0.315f, 0, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
-            _object3d[11].addChild(-1.72f, -0.33f, 0, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
-            _object3d[11].addChild(-1.74f, -0.38f, 0, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[11].addChild(-1.72f, -0.45f, 0, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-1.605f, -0.315f, 0.10f, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
+            _object3d[13].addChild(-1.605f, -0.315f, 0.12f, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
+            _object3d[13].addChild(-1.605f, -0.395f, 0.14f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-1.605f, -0.465f, 0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-1.605f, -0.525f, 0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
 
-            _object3d[11].addChild(-1.50f, -0.315f, 0, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
-            _object3d[11].addChild(-1.48f, -0.33f, 0, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
-            _object3d[11].addChild(-1.46f, -0.38f, 0f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[11].addChild(-1.48f, -0.45f, 0f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1);
-            _object3d[11].addChild(-1.49f, -0.50f, 0f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-1.605f, -0.315f, -0.10f, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
+            _object3d[13].addChild(-1.605f, -0.315f, -0.12f, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
+            _object3d[13].addChild(-1.605f, -0.395f, -0.14f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-1.605f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-1.605f, -0.525f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
 
-            //kaki
-            _object3d[11].addChildBalok(-1.55f, -0.73f, -0.02f, 0.08f, 0.25f, 0.08f, 1, 0.14f, 0.38f, 0.35f, 1f);
-            _object3d[11].addChild(-1.55f, -0.90f, -0.02f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[11].addChild(-1.55f, -0.86f, -0.02f, 0.08f, 0, 0.14f, 0.38f, 0.35f, 1f);
+            //obj 1
+            _object3d.Add(new Asset3D(0.87f, 0.68f, 0.45f, 1f));
+            //_object3d[1].createNewEllipsoid(0.2f, 0.5f, 0.2f, 0.0f, 0.0f, 0.0f, 72, 24);
+            _object3d[14].createBoxVertices(-2.04f, -0.17f, 0, 0.15f,0.015f,0.015f);
+            _object3d[14].addChild(-1.97f, -0.15f, 0.05f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
+            _object3d[14].addChild(-1.97f, -0.15f, 0.03f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChild(-1.97f, -0.15f, -0.05f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
+            _object3d[14].addChild(-1.97f, -0.15f, -0.03f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChild(-1.97f, -0.20f, 0.01f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChild(-1.97f, -0.20f, -0.01f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
 
-            _object3d[11].addChildBalok(-1.65f, -0.73f, -0.02f, 0.08f, 0.25f, 0.08f, 1, 0.14f, 0.38f, 0.35f, 1f);
-            _object3d[11].addChild(-1.65f, -0.90f, -0.02f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[11].addChild(-1.65f, -0.86f, -0.02f, 0.08f, 0, 0.14f, 0.38f, 0.35f, 1f);
-            */
+            //rambut
+            _object3d[14].addChildBalok(-2.04f, -0.085f, 0.00f, 0.15f, 0.02f, 0.15f, 1, 0.13f, 0.13f, 0.13f, 1f);
 
+            ////rambut belakang
+            _object3d[14].addChildBalok(-2.12f, -0.145f, -0f, 0.02f, 0.14f, 0.15f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            //rambut samping
+            _object3d[14].addChildBalok(-2.09f, -0.145f, -0.085f, 0.08f, 0.14f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-2.04f, -0.125f, -0.085f, 0.08f, 0.10f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-1.985f, -0.110f, -0.085f, 0.04f, 0.07f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            _object3d[14].addChildBalok(-2.09f, -0.145f, 0.085f, 0.08f, 0.14f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-2.04f, -0.125f, 0.085f, 0.08f, 0.10f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-1.985f, -0.110f, 0.085f, 0.04f, 0.07f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            ////rambut depan
+            _object3d[14].addChildBalok(-1.97f, -0.095f, 0f, 0.02f, 0.04f, 0.19f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            //badan
+            _object3d[14].addChild(-2.04f, -0.26f, 0, 0.07f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChildBalok(-2.04f, -0.44f, 0f, 0.12f, 0.33f, 0.12f, 1, 0.54f, 0.64f, 0.48f, 1f);
+
+            //Toga
+            _object3d[14].addChildElipsoid(0.03f, 0.03f, 0.03f, -2.04f, -0.07f, 0f, 0.01f, 0.25f, 0.53f, 1f);
+            _object3d[14].addChildBalok(-2.03f, -0.04f, -0.005f, 0.12f, 0.01f, 0.12f, 1, 0.01f, 0.25f, 0.53f, 1f);
+
+            //obj 2
+            _object3d.Add(new Asset3D(0.87f, 0.68f, 0.45f, 1f));
+            _object3d[15].createBoxVertices(-2.50f, -0.17f, 0, 0.15f,0.15f,0.15f);
+            _object3d[15].addChild(-2.43f, -0.15f, 0.05f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
+            _object3d[15].addChild(-2.43f, -0.15f, 0.03f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChild(-2.43f, -0.15f, -0.05f, 0.02f, 0, 0.90f, 0.90f, 0.90f, 1f);
+            _object3d[15].addChild(-2.43f, -0.15f, -0.03f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChild(-2.43f, -0.20f, 0.01f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChild(-2.43f, -0.20f, -0.01f, 0.02f, 0, 0.13f, 0.13f, 0.13f, 1f);
+
+            //rambut
+            _object3d[15].addChildBalok(-2.50f, -0.085f, 0.00f, 0.15f, 0.02f, 0.15f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            ////rambut belakang
+            _object3d[15].addChildBalok(-2.58f, -0.145f, -0f, 0.02f, 0.14f, 0.15f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            //rambut samping
+            _object3d[15].addChildBalok(-2.55f, -0.145f, -0.085f, 0.08f, 0.14f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChildBalok(-2.50f, -0.125f, -0.085f, 0.08f, 0.10f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChildBalok(-2.445f, -0.110f, -0.085f, 0.04f, 0.07f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            _object3d[15].addChildBalok(-2.55f, -0.145f, 0.085f, 0.08f, 0.14f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChildBalok(-2.50f, -0.125f, 0.085f, 0.08f, 0.10f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[15].addChildBalok(-2.445f, -0.110f, 0.085f, 0.04f, 0.07f, 0.02f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            ////rambut depan
+            _object3d[15].addChildBalok(-2.43f, -0.095f, 0f, 0.02f, 0.04f, 0.19f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+
+            //badan
+            _object3d[15].addChild(-2.50f, -0.26f, 0, 0.07f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[15].addChildBalok(-2.50f, -0.44f, 0f, 0.12f, 0.33f, 0.12f, 1, 0.26f, 0.17f, 0.18f, 1f);
+
+            //Toga
+            _object3d[15].addChildElipsoid(0.03f, 0.03f, 0.03f, -2.50f, -0.07f, 0f, 0.01f, 0.25f, 0.53f, 1f);
+            _object3d[15].addChildBalok(-2.49f, -0.04f, -0.005f, 0.12f, 0.01f, 0.12f, 1, 0.01f, 0.25f, 0.53f, 1f);
+
+            // jam tangan
+            _object3d.Add(new Asset3D(0.8f, 0.8f, 0.8f, 1f));
+            _object3d[14].createTube(-2.51f, -0.23f, 0.26f, 0.015f, 0.015f, 1, true);
+
+            _object3d[14].addChildBalok(-2.535f, -0.23f, 0.265f, 0.02f, 0.01f, 0.011f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-2.48f, -0.23f, 0.265f, 0.03f, 0.01f, 0.011f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            _object3d[14].addChildBalok(-2.55f, -0.23f, 0.22f, 0.01f, 0.011f, 0.10f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-2.46f, -0.23f, 0.22f, 0.01f, 0.011f, 0.10f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            _object3d[14].addChildBalok(-2.505f, -0.23f, 0.17f, 0.101f, 0.01f, 0.011f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            _object3d[14].addChildBalok(-2.51f, -0.225f, 0.28f, 0.005f, 0.015f, 0.005f, 1, 0.13f, 0.13f, 0.13f, 1f);
+            _object3d[14].addChildBalok(-2.513f, -0.23f, 0.28f, 0.010f, 0.005f, 0.005f, 1, 0.13f, 0.13f, 0.13f, 1f);
+
+            // kaki orang 1
+            _object3d.Add(new Asset3D(0.13f, 0.13f, 0.13f, 1f));
+            _object3d[15].createBoxVertices(-1.60f, -0.75f, -0.05f, 0.08f, 0.29f, 0.08f);
+            _object3d[15].addChildBalok(-1.60f, -0.915f, -0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d.Add(new Asset3D(0.13f, 0.13f, 0.13f, 1f));
+            _object3d[16].createBoxVertices(-1.60f, -0.75f, 0.05f, 0.08f, 0.29f, 0.08f);
+            _object3d[16].addChildBalok(-1.60f, -0.915f, 0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
+
+            //kaki orang 2
+
+            _object3d.Add(new Asset3D(0.14f, 0.38f, 0.35f, 1f));
+            _object3d[17].createBoxVertices(-2.04f, -0.75f, -0.05f, 0.08f, 0.29f, 0.08f);
+            _object3d[17].addChildBalok(-2.04f, -0.915f, -0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d.Add(new Asset3D(0.14f, 0.38f, 0.35f, 1f));
+            _object3d[18].createBoxVertices(-2.04f, -0.75f, 0.05f, 0.08f, 0.29f, 0.08f);
+            _object3d[18].addChildBalok(-2.04f, -0.915f, 0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
+
+            //tangan orang 2
+
+            _object3d.Add(new Asset3D(0.54f, 0.64f, 0.48f, 1f));
+            _object3d[19].createBoxVertices(-2.045f, -0.315f, 0.10f, 0.08f, 0.08f, 0.08f);
+            _object3d[19].addChild(-2.045f, -0.395f, 0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[19].addChild(-2.045f, -0.465f, 0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[19].addChild(-2.045f, -0.525f, 0.13f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d.Add(new Asset3D(0.54f, 0.64f, 0.48f, 1f));
+            _object3d[20].createBoxVertices(-2.045f, -0.315f, -0.10f, 0.08f,0.08f,0.08f);
+            _object3d[20].addChild(-2.045f, -0.395f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[20].addChild(-2.045f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[20].addChild(-2.045f, -0.525f, -0.13f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+
+            // kaki orang 3
+
+            _object3d.Add(new Asset3D(0.14f, 0.38f, 0.35f, 1f));
+            _object3d[21].createBoxVertices(-2.50f, -0.75f, -0.05f, 0.08f, 0.29f, 0.08f);
+            _object3d[21].addChildBalok(-2.50f, -0.915f, -0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d.Add(new Asset3D(0.14f, 0.38f, 0.35f, 1f));
+            _object3d[22].createBoxVertices(-2.50f, -0.75f, 0.05f, 0.08f, 0.29f, 0.08f);
+            _object3d[22].addChildBalok(-2.50f, -0.915f, 0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
+
+            // tangan orang 3
+
+            _object3d.Add(new Asset3D(0.26f, 0.17f, 0.18f, 1f));
+            _object3d[23].createBoxVertices(-2.505f, -0.315f, 0.10f, 0.08f,0.08f,0.08f);
+            _object3d[23].addChild(-2.505f, -0.315f, 0.18f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[23].addChild(-2.505f, -0.315f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[23].addChild(-2.505f, -0.275f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[23].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[23].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[23].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d.Add(new Asset3D(0.26f, 0.17f, 0.18f, 1f));
+            _object3d[24].createBoxVertices(-2.505f, -0.315f, -0.10f, 0.08f,0.08f,0.08f);
+            _object3d[24].addChild(-2.505f, -0.395f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[24].addChild(-2.505f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[24].addChild(-2.505f, -0.525f, -0.13f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            
             for (int i = 0; i < _object3d.Count(); i++)
             {
                 models.Add(Matrix4.Identity);
@@ -277,7 +446,7 @@ namespace Tes
                         asset3d.load(Constants.path + "shader.vert", Constants.path + "shader.frag", Size.X, Size.Y);
                     }
                 }
-                else if (i == 8)
+                else if (i == 9)
                 {
                     _object3d[i].RotateOnZero(1, 135);
                     _object3d[i].RotateOnZero(0, 30);
@@ -309,17 +478,18 @@ namespace Tes
                 _object3d[i].load(Constants.path + "shader.vert", Constants.path + "shader.frag", Size.X, Size.Y);               
             }
 
-            //_object3d.Add(new Asset3D());
-            //_object3d.Add(new Asset3D());
+            
 
-            //transformasi  mulai disini                       
-            _object3d[9].RotateOnCore(2,18,0);
-            _object3d[9].RotateOnCore(2, 25, 2);
-            _object3d[9].RotateOnCore(2, 25, 4);
-            _object3d[9].RotateOnCore(2,-25,3);
-            _object3d[9].RotateOnCore(2, -25, 5);
-            _object3d[9].RotateOnCore(2,30 , 8);
-            _object3d[9].RotateOnCore(2, -30, 9);
+            //transformasi  mulai disini
+            _object3d[8].RotateOnCore(0,30);
+            _object3d[10].RotateOnCore(2,18,0);
+            _object3d[10].RotateOnCore(2, 25, 2);
+            _object3d[10].RotateOnCore(2, 25, 4);
+            _object3d[10].RotateOnCore(2,-25,3);
+            _object3d[10].RotateOnCore(2, -25, 5);
+            _object3d[10].RotateOnCore(2,30 , 8);
+            _object3d[10].RotateOnCore(2, -30, 9);
+            _object3d[11].RotateOnCore(0, 180, 4);                                                   
         }
                
         protected override void OnRenderFrame(FrameEventArgs args)
@@ -333,8 +503,8 @@ namespace Tes
             for (int i = 0; i < _object3d.Count(); i++)
             {                
                 _object3d[i].render(_time, _camera.GetViewMatrix(), _camera.GetProjectionMatrix());
-            }           
-
+            }
+           
             SwapBuffers();
         }
         
