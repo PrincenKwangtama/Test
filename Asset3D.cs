@@ -1141,5 +1141,14 @@ namespace Tes
             newChild.createEllipsoid(radiusX, radiusY, radiusZ, _x, _y, _z);
             Child.Add(newChild);
         }
+
+        public void addChildElipsoids(float radiusX, float radiusY, float radiusZ, float _x, float _y, float _z, float r, float g, float b, float alpha)
+        {
+            Asset3D newChild = new Asset3D(r, g, b, alpha);
+            newChild.createEllipsoid(radiusX, radiusY, radiusZ, _x, _y, _z);
+            Child.Add(newChild);
+        }
+
+
     }
 }
