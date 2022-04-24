@@ -40,6 +40,11 @@ namespace Test
         float degr = 0;
         int count = 0;
 
+        float time_kanan = 0.01f;
+        float time_kiri = -0.01f;
+        float time_tangan_kanan = 0.01f;
+        float time_tangan_kiri = -0.01f;
+
 
         public window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
@@ -251,16 +256,17 @@ namespace Test
 
             _object3d.Add(new Assets_3D(0.26f, 0.17f, 0.18f, 1f));
             _object3d[13].createBoxVertices(-2.505f, -0.315f, -0.10f, 0.08f);
-            _object3d[13].addChild(-2.505f, -0.395f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[13].addChild(-2.505f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[13].addChild(-2.505f, -0.525f, -0.13f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-2.505f, -0.315f, -0.18f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-2.505f, -0.315f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-2.505f, -0.355f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-2.505f, -0.435f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-2.505f, -0.435f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[13].addChild(-2.505f, -0.435f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
 
-
-
-
-
-            _object3d[4].translate(0.3f, 0.18f, 0.0f);
-            _object3d[5].translate(0.3f, 0.18f, 0f);
+            //_object3d[13].addChild(-2.505f, -0.275f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            //_object3d[13].addChild(-2.505f, -0.195f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            //_object3d[13].addChild(-2.505f, -0.195f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            //_object3d[13].addChild(-2.505f, -0.195f, -0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
 
 
 
@@ -272,7 +278,7 @@ namespace Test
 
 
             _camera = new Camera(new Vector3(0, 0, 1), Size.X / (float)Size.Y);
-            CursorGrabbed = true;
+            CursorGrabbed = false;
             
         }
 
@@ -281,22 +287,14 @@ namespace Test
             base.OnRenderFrame(args);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            //Matrix4 temp = Matrix4.Identity;
-            //temp += temp * Matrix4.CreateTranslation(0.0f, 0.0f, 1.0f);
-            //deg += MathHelper.DegreesToRadians(0.01f);
-            //temp = temp * Matrix4.CreateRotationX(deg);
-            //_object3d[0].render(0, temp);
-
-            //_time += args.Time;
             Matrix4 temp = Matrix4.Identity;
-            //temp = temp * Matrix4.CreateTranslation(0.5f, 0.5f, 0.0f);
-            //degr += MathHelper.DegreesToRadians(0.05f);
-            //temp = temp * Matrix4.CreateRotationY(degr);
+      
 
-            //test_animation(0.02f, 1f, 1);
-
-            _object3d[4].rotate(_object3d[0]._centerPosition, _object3d[0]._euler[2], 0.01f);
-            _object3d[5].rotate(_object3d[0]._centerPosition, _object3d[1]._euler[2], 0.01f);
+            animation_kaki(4, 5, 0);
+            animation_kaki(6, 7, 1);
+            animation_kaki(10, 11, 2);
+            animation_tangan_biasa(8, 9, 1);
+            
 
             for (int i = 0; i < _object3d.Count(); i++)
             {
@@ -307,6 +305,7 @@ namespace Test
                 
             }
 
+
             _object3d[3].render(1, temp, _time, _camera.GetViewMatrix(), _camera.GetProjectionMatrix());
 
 
@@ -314,34 +313,40 @@ namespace Test
 
         }
 
-        public void test_animation(float delta, float duration, int mode)
+        public void animation_kaki(int index1, int index2, int center)
         {
-            int count = 0;
-            if(duration - time_passed < delta)
+            if (_object3d[index1]._centerPosition.Y >= 1.0341304 || _object3d[index1]._centerPosition.Y <= -1.0341304)
             {
-                delta = duration - time_passed;
-                time_passed = 0;
-                expired = true;
-                animation_stage++;
-            }
-            foreach(Assets_3D i in _object3d)
-            {
-                switch (0)
-                {
-                    case 0:
-                        i.rotate(_object3d[0]._centerPosition, _object3d[0]._euler[1],-45 * delta / 4.0f);
-                        break;
-                    case 1:
-                        i.rotate(_object3d[0]._centerPosition, _object3d[0]._euler[1], -45 * delta / 2.0f);
-                        break;
-                }
-                count += 1;
+                time_kanan *= -1;
             }
 
-            if (!expired)
+            if (_object3d[index2]._centerPosition.Y <= -1.0341304 || _object3d[index2]._centerPosition.Y >= 1.0341304)
             {
-                time_passed += delta;
+                time_kiri *= -1;
             }
+
+            _object3d[index1].translate(0f, 0.1f * time_kanan, 0f);
+            _object3d[index1].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_kanan);
+            _object3d[index2].translate(0f, 0.1f * time_kiri, 0f);
+            _object3d[index2].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_kiri);
+        }
+
+        public void animation_tangan_biasa(int index1, int index2, int center)
+        {
+            if (_object3d[index1]._centerPosition.Y >= 1.8341304 || _object3d[index1]._centerPosition.Y <= -1.8341304)
+            {
+                time_tangan_kanan *= -1;
+            }
+
+            if (_object3d[index2]._centerPosition.Y <= -1.8341304 || _object3d[index2]._centerPosition.Y >= 1.8341304)
+            {
+                time_tangan_kiri *= -1;
+            }
+
+            _object3d[index1].translate(0f, 0.1f * time_tangan_kanan, 0f);
+            _object3d[index1].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_tangan_kanan);
+            _object3d[index2].translate(0f, 0.1f * time_tangan_kiri, 0f);
+            _object3d[index2].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_tangan_kiri);
         }
 
         protected override void OnUnload()
