@@ -1126,6 +1126,7 @@ namespace Test
         }
 
 
+
         public void translate(float x, float y, float z)
         {
             _model *= Matrix4.CreateTranslation(x, y, z);
@@ -1149,6 +1150,64 @@ namespace Test
             foreach (var i in Child)
             {
                 i.scale(scaleX, scaleY, scaleZ);
+            }
+        }
+
+        public void RotateOnCore(int axis, float angle)
+        {
+            RotateOnZero(0, -30);
+            RotateOnZero(1, -45);
+
+            _model = _model * Matrix4.CreateTranslation(-_x, -_y, -_z);
+
+            RotateOnZero(axis, angle);
+
+            _model = _model * Matrix4.CreateTranslation(_x, _y, _z);
+
+            RotateOnZero(1, 45);
+            RotateOnZero(0, 30);
+
+            foreach (var item in Child)
+            {
+                item.RotateOnCore(axis, angle);
+            }
+        }
+
+        public void RotateOnCore(int axis, float angle, int childIndex)
+        {
+            RotateOnZero(0, -30);
+            RotateOnZero(1, -45);
+
+            _model = _model * Matrix4.CreateTranslation(-_x, -_y, -_z);
+
+            RotateOnZero(axis, angle);
+
+            _model = _model * Matrix4.CreateTranslation(_x, _y, _z);
+
+            RotateOnZero(1, 45);
+            RotateOnZero(0, 30);
+
+            Child[childIndex].RotateOnCore(axis, angle);
+        }
+
+        //poros putaran di 0 0 0
+        //objIndex -> obj yg mana? (index nya di list)
+        //axis -> diputar di sb apa?
+        //0 = sb x, 1 = sb y, dll = sb z
+        //angle -> brp derajat?
+        public void RotateOnZero(int axis, float angle)
+        {
+            if (axis == 0)
+            {
+                _model = _model * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(angle));
+            }
+            else if (axis == 1)
+            {
+                _model = _model * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(angle));
+            }
+            else
+            {
+                _model = _model * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(angle));
             }
         }
 
