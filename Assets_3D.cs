@@ -30,10 +30,18 @@ namespace Test
         Matrix4 _projection;
         Matrix4 _model;
 
+
+        float _x;
+        float _y;
+        float _z;
+
+        String objType = "Not Assigned";
+
         public Vector3 colors;
-        public Vector3 _centerPosition = new Vector3(0, 0, 0);
+        public Vector3 _centerPosition = Vector3.Zero;
         public List<Vector3> _euler = new List<Vector3>();
         public List<Assets_3D> Child;
+        public List<Matrix4> childModel;
 
         public Assets_3D(float r, float g, float b, float alpha)
         {
@@ -70,6 +78,36 @@ namespace Test
             _model = Matrix4.Identity;
             _centerPosition = new Vector3(0, 0, 0);
             Child = new List<Assets_3D>();
+        }
+
+        private void setX(float x)
+        {
+            _x = x;
+        }
+
+        private void setY(float y)
+        {
+            _y = y;
+        }
+
+        private void setZ(float z)
+        {
+            _z = z;
+        }
+
+        public float getX()
+        {
+            return _x;
+        }
+
+        public float getY()
+        {
+            return _y;
+        }
+
+        public float getZ()
+        {
+            return _z;
         }
 
         public void load(string shadervert, string shaderfrag, float Size_x, float Size_y)
@@ -798,17 +836,143 @@ namespace Test
             float pi = (float)Math.PI;
             Vector3 temp_vector;
 
-            for (float i = -pi / 2; i <= pi / 2; i += pi / 360)
+            for (float i = -pi; i <= pi; i += pi / 360)
             {
-                for (float j = -pi; j <= pi; j += pi / 360)
+                for (float j = -pi/2; j <= pi; j += pi / 360)
                 {
                     temp_vector.X = radius * (float)Math.Cos(i) * (float)Math.Cos(j) + _centerPosition.X;
                     temp_vector.Y = radius * (float)Math.Cos(i) * (float)Math.Sin(j) + _centerPosition.Y;
-                    if (temp_vector.Y < _centerPosition.Y)
-                        temp_vector.Y = _centerPosition.Y - height * 0.5f;
-                    else
-                        temp_vector.Y = _centerPosition.Y + height * 0.5f;
                     temp_vector.Z = radius * (float)Math.Sin(i) + _centerPosition.Z;
+                    if (temp_vector.X < _centerPosition.X)
+                        temp_vector.X = _centerPosition.X - height * 0.5f;
+                    else
+                        temp_vector.X = _centerPosition.X + height * 0.5f;
+                    _vertices.Add(temp_vector);
+                }
+            }
+        }
+
+        public void createTube(float x, float y, float z, float rad, float thick, double portion, bool downside)
+        {
+            _x = x;
+            _y = y;
+            _z = z;
+            objType = "Solid Circular";
+
+            if (portion > 1)
+            {
+                portion = 1;
+            }
+
+            float pi = (float)Math.PI;
+            float perimeter = (float)MathHelper.DegreesToRadians(360 * portion);
+            Vector3 temp_vector;
+
+            if (downside)
+            {
+                for (float u = -pi; u <= (-pi + perimeter); u += pi / 360)
+                {
+                    temp_vector.X = x + (float)Math.Cos(u) * rad;
+                    temp_vector.Y = y + (float)Math.Sin(u) * rad;
+                    temp_vector.Z = z;
+                    _vertices.Add(temp_vector);
+
+                    temp_vector.X = x + (float)Math.Cos(u) * rad;
+                    temp_vector.Y = y + (float)Math.Sin(u) * rad;
+                    temp_vector.Z = z + thick;
+                    _vertices.Add(temp_vector);
+                }
+            }
+            else
+            {
+                for (float u = 0; u <= perimeter; u += pi / 260)
+                {
+                    temp_vector.X = x + (float)Math.Cos(u) * rad;
+                    temp_vector.Y = y + (float)Math.Sin(u) * rad;
+                    temp_vector.Z = z;
+                    _vertices.Add(temp_vector);
+
+                    temp_vector.X = x + (float)Math.Cos(u) * rad;
+                    temp_vector.Y = y + (float)Math.Sin(u) * rad;
+                    temp_vector.Z = z + thick;
+                    _vertices.Add(temp_vector);
+                }
+            }
+        }
+
+        public void createRing(float x, float y, float z, float radMajor, float radMinor, float length, float angleStart, float angleFin)
+        {
+            _x = x;
+            _y = y;
+            _z = z;
+            objType = "Hollow Circular";
+
+            float pi = (float)Math.PI;
+            Vector3 temp_vector;
+
+            for (float u = MathHelper.DegreesToRadians(angleStart); u <= MathHelper.DegreesToRadians(angleFin); u += pi / 300)
+            {
+                temp_vector.X = x + (float)Math.Cos(u) * radMajor;
+                temp_vector.Y = y + (float)Math.Sin(u) * radMajor;
+                temp_vector.Z = z;
+                _vertices.Add(temp_vector);
+
+                temp_vector.X = x + (float)Math.Cos(u) * radMinor;
+                temp_vector.Y = y + (float)Math.Sin(u) * radMinor;
+                temp_vector.Z = z;
+                _vertices.Add(temp_vector);
+
+                temp_vector.X = x + (float)Math.Cos(u) * radMajor;
+                temp_vector.Y = y + (float)Math.Sin(u) * radMajor;
+                temp_vector.Z = z + length;
+                _vertices.Add(temp_vector);
+
+                temp_vector.X = x + (float)Math.Cos(u) * radMinor;
+                temp_vector.Y = y + (float)Math.Sin(u) * radMinor;
+                temp_vector.Z = z + length;
+                _vertices.Add(temp_vector);
+            }
+        }
+
+        public void createCrescent(float x, float y, float z, float length, float heigth, float crescWide, bool faceDown)
+        {
+            setX(x);
+            setY(y);
+            setZ(z);
+            objType = "Hollow Circular";
+
+            float pi = (float)Math.PI;
+            Vector3 temp_vector;
+
+            if (faceDown)
+            {
+                for (float i = -pi; i <= 0; i += (pi / 360))
+                {
+
+                    temp_vector.X = x + (float)Math.Cos(i) * length;
+                    temp_vector.Y = y + (float)Math.Sin(i) * heigth;
+                    temp_vector.Z = z;
+                    _vertices.Add(temp_vector);
+
+                    temp_vector.X = x + (float)Math.Cos(i) * length;
+                    temp_vector.Y = y + (float)Math.Sin(i) * heigth - crescWide;
+                    temp_vector.Z = z;
+                    _vertices.Add(temp_vector);
+                }
+            }
+            else
+            {
+                for (float i = 0; i <= pi; i += (pi / 360))
+                {
+
+                    temp_vector.X = x + (float)Math.Cos(i) * length;
+                    temp_vector.Y = y + (float)Math.Sin(i) * heigth;
+                    temp_vector.Z = z;
+                    _vertices.Add(temp_vector);
+
+                    temp_vector.X = x + (float)Math.Cos(i) * length;
+                    temp_vector.Y = y + (float)Math.Sin(i) * heigth - crescWide;
+                    temp_vector.Z = z;
                     _vertices.Add(temp_vector);
                 }
             }
@@ -959,6 +1123,33 @@ namespace Test
                 temp = newPosition + pivot;
             }
             return temp;
+        }
+
+
+        public void translate(float x, float y, float z)
+        {
+            _model *= Matrix4.CreateTranslation(x, y, z);
+
+            _centerPosition.X += x;
+            _centerPosition.Y += y;
+            _centerPosition.Z += z;
+
+            foreach (var i in Child)
+            {
+                i.translate(x, y, z);
+            }
+        }
+
+        public void scale(float scaleX, float scaleY, float scaleZ)
+        {
+            _model *= Matrix4.CreateTranslation(-_centerPosition);
+            _model *= Matrix4.CreateScale(scaleX, scaleY, scaleZ);
+            _model *= Matrix4.CreateTranslation(_centerPosition);
+
+            foreach (var i in Child)
+            {
+                i.scale(scaleX, scaleY, scaleZ);
+            }
         }
 
         public void resetEuler()
@@ -1279,17 +1470,6 @@ namespace Test
             Child.Add(newChild);
         }
 
-        public void addChildBalok(float x, float y, float z, float length, float wide, float depth,int pilihan,Vector3 colors)
-        {
-            Assets_3D newChild = new Assets_3D(colors);
-            if (pilihan == 1)
-            {
-                newChild.createBoxVertices(x, y, z, length, wide, depth);
-            }
-
-            Child.Add(newChild);
-        }
-
         public void addChildBalok(float x, float y, float z, float length, float wide, float depth, int pilihan, float r, float g, float b, float alpha)
         {
             Assets_3D newChild = new Assets_3D(r, g, b, alpha);
@@ -1301,12 +1481,10 @@ namespace Test
             Child.Add(newChild);
         }
 
-
-
-        public void addChildElipsoid(float x, float y, float z, float radX, float radY, float radZ, int sectorCount, int stackCount,Vector3 colors)
+        public void addChildElipsoids(float radiusX, float radiusY, float radiusZ, float _x, float _y, float _z, float r, float g, float b, float alpha)
         {
-            Assets_3D newChild = new Assets_3D(colors);
-            newChild.createEllipsoid2(x, y, z, radX, radY, radZ, sectorCount, stackCount);
+            Assets_3D newChild = new Assets_3D(r, g, b, alpha);
+            newChild.createEllipsoid(radiusX, radiusY, radiusZ, _x, _y, _z);
             Child.Add(newChild);
         }
 
@@ -1314,6 +1492,13 @@ namespace Test
         {
             Assets_3D newChild = new Assets_3D(r, g, b, alpha);
             newChild.createEllipsoid2(x, y, z, radX, radY, radZ, sectorCount, stackCount);
+            Child.Add(newChild);
+        }
+
+        public void addCylinder(float radius, float height, float _x, float _y, float _z, float r, float g, float b, float alpha)
+        {
+            Assets_3D newChild = new Assets_3D(r, g, b, alpha);
+            newChild.createCylinder(radius,height,_x,_y,_z);
             Child.Add(newChild);
         }
 
@@ -1340,6 +1525,34 @@ namespace Test
             Assets_3D newChild = new Assets_3D(_color[0], _color[1], _color[2], _color[3]);
 
             newChild.createBoxVertices(x, y, z, lx, ly, lz);
+
+            Child.Add(newChild);
+        }
+
+        public void createTubeChild(float x, float y, float z, float rad, float thick, double portion, bool downleft, float r, float g, float b, float alpha)
+        {
+            Assets_3D newChild = new Assets_3D(r, g, b, alpha);
+
+            newChild.createTube(x, y, z, rad, thick, portion, downleft);
+
+            Child.Add(newChild);
+            //childModel.Add(Matrix4.Identity);
+        }
+
+        public void createCrescentChild(float x, float y, float z, float length, float heigth, float crescWide, bool faceDown, float r, float g, float b, float alpha)
+        {
+            Assets_3D newChild = new Assets_3D(r, g, b, alpha);
+
+            newChild.createCrescent(x, y, z, length, heigth, crescWide, faceDown);
+
+            Child.Add(newChild);
+        }
+
+        public void createRingChild(float x, float y, float z, float radMajor, float radMinor, float length, float angleStart, float angleFin)
+        {
+            Assets_3D newChild = new Assets_3D();
+
+            newChild.createRing(x, y, z, radMajor, radMinor, length, angleStart, angleFin);
 
             Child.Add(newChild);
         }
