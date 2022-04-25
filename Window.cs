@@ -69,7 +69,14 @@ namespace Tes
         Vector2 lastPos;
         Vector3 _objectPos = new Vector3(0,0,0);
         float _rotationSpeed = 0.1f;
-        
+
+        float time_kanan = 0.01f;
+        float time_kiri = -0.01f;
+        float time_tangan_kanan = 0.01f;
+        float time_tangan_kiri = -0.01f;
+        float time_tangan_gaya_kanan = 0.01f;
+        float time_tangan_gaya_kiri = -0.01f;
+
         public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
         {
             CenterWindow();
@@ -345,6 +352,22 @@ namespace Tes
             _object3d[14].addChild(-2.50f, -0.26f, 0, 0.07f, 0, 0.87f, 0.68f, 0.45f, 1f);
             _object3d[14].addChildBalok(-2.50f, -0.44f, 0f, 0.12f, 0.33f, 0.12f, 1, 0.26f, 0.17f, 0.18f, 1f);
 
+
+            // tangan orang 3
+
+            _object3d[14].addChild(-2.505f, -0.315f, 0.10f, 0.08f,0, 0.26f, 0.17f, 0.18f, 1f);
+            _object3d[14].addChild(-2.505f, -0.315f, 0.18f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.315f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.275f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d[14].addChild(-2.505f, -0.315f, -0.10f, 0.08f, 0,0.26f, 0.17f, 0.18f, 1f);
+            _object3d[14].addChild(-2.505f, -0.395f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[14].addChild(-2.505f, -0.525f, -0.13f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+
             //Toga
             _object3d[14].addChildElipsoids(0.03f, 0.03f, 0.03f, -2.50f, -0.07f, 0f, 0.01f, 0.25f, 0.53f, 1f);
             _object3d[14].addChildBalok(-2.49f, -0.04f, -0.005f, 0.12f, 0.01f, 0.12f, 1, 0.01f, 0.25f, 0.53f, 1f);
@@ -407,22 +430,22 @@ namespace Tes
             _object3d[23].createBoxVertices(-2.50f, -0.75f, 0.05f, 0.08f, 0.29f, 0.08f);
             _object3d[23].addChildBalok(-2.50f, -0.915f, 0.05f, 0.08f, 0.04f, 0.08f, 1, 0.87f, 0.68f, 0.45f, 1f);
 
-            // tangan orang 3
 
-            _object3d.Add(new Asset3D(0.26f, 0.17f, 0.18f, 1f));
-            _object3d[24].createBoxVertices(-2.505f, -0.315f, 0.10f, 0.08f);
-            _object3d[24].addChild(-2.505f, -0.315f, 0.18f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[24].addChild(-2.505f, -0.315f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[24].addChild(-2.505f, -0.275f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[24].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[24].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[24].addChild(-2.505f, -0.195f, 0.22f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            // tangan orang 1
 
-            _object3d.Add(new Asset3D(0.26f, 0.17f, 0.18f, 1f));
-            _object3d[25].createBoxVertices(-2.505f, -0.315f, -0.10f, 0.08f);
-            _object3d[25].addChild(-2.505f, -0.395f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[25].addChild(-2.505f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
-            _object3d[25].addChild(-2.505f, -0.525f, -0.13f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d.Add(new Assets_3D(0.05f, 0.31f, 0.55f, 1f));
+            _object3d[24].createBoxVertices(-1.605f, -0.315f, 0.10f, 0.08f);
+            _object3d[24].addChild(-1.605f, -0.315f, 0.12f, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
+            _object3d[24].addChild(-1.605f, -0.395f, 0.14f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[24].addChild(-1.605f, -0.465f, 0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[24].addChild(-1.605f, -0.525f, 0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+
+            _object3d.Add(new Assets_3D(0.05f, 0.31f, 0.55f, 1f));
+            _object3d[25].createBoxVertices(-1.605f, -0.315f, -0.10f, 0.08f);
+            _object3d[25].addChild(-1.605f, -0.315f, -0.12f, 0.08f, 0, 0.05f, 0.31f, 0.55f, 1f);
+            _object3d[25].addChild(-1.605f, -0.395f, -0.14f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[25].addChild(-1.605f, -0.465f, -0.12f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
+            _object3d[25].addChild(-1.605f, -0.525f, -0.11f, 0.08f, 0, 0.87f, 0.68f, 0.45f, 1f);
 
             for (int i = 0; i < _object3d.Count(); i++)
             {
@@ -496,6 +519,12 @@ namespace Tes
             //animasi mulai disini
             //models[10] = models[10] * Matrix4.CreateTranslation(0.0f, 0.0f, 1.0f);
 
+            animation_kaki(4, 5, 0);
+            animation_kaki(6, 7, 1);
+            animation_kaki(10, 11, 2);
+            animation_tangan_biasa(8, 9, 1);
+            animation_tangan_gaya(12, 13, 0);
+
             for (int i = 0; i < _object3d.Count(); i++)
             {                
                 _object3d[i].render(_time, _camera.GetViewMatrix(), _camera.GetProjectionMatrix());
@@ -503,7 +532,61 @@ namespace Tes
            
             SwapBuffers();
         }
-        
+
+        public void animation_kaki(int index1, int index2, int center)
+        {
+            if (_object3d[index1]._centerPosition.Y >= 1.0341304 || _object3d[index1]._centerPosition.Y <= -1.0341304)
+            {
+                time_kanan *= -1;
+            }
+
+            if (_object3d[index2]._centerPosition.Y <= -1.0341304 || _object3d[index2]._centerPosition.Y >= 1.0341304)
+            {
+                time_kiri *= -1;
+            }
+
+            _object3d[index1].translate(0f, 0.1f * time_kanan, 0f);
+            _object3d[index1].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_kanan);
+            _object3d[index2].translate(0f, 0.1f * time_kiri, 0f);
+            _object3d[index2].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_kiri);
+        }
+
+        public void animation_tangan_biasa(int index1, int index2, int center)
+        {
+            if (_object3d[index1]._centerPosition.Y >= 1.8341304 || _object3d[index1]._centerPosition.Y <= -1.8341304)
+            {
+                time_tangan_kanan *= -1;
+            }
+
+            if (_object3d[index2]._centerPosition.Y <= -1.8341304 || _object3d[index2]._centerPosition.Y >= 1.8341304)
+            {
+                time_tangan_kiri *= -1;
+            }
+
+            _object3d[index1].translate(0f, 0.1f * time_tangan_kanan, 0f);
+            _object3d[index1].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_tangan_kanan);
+            _object3d[index2].translate(0f, 0.1f * time_tangan_kiri, 0f);
+            _object3d[index2].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_tangan_kiri);
+        }
+
+        public void animation_tangan_gaya(int index1, int index2, int center)
+        {
+            if (_object3d[index1]._centerPosition.Y >= 0.9341304 || _object3d[index1]._centerPosition.Y <= -0.9341304)
+            {
+                time_tangan_gaya_kanan *= -1;
+            }
+
+            if (_object3d[index2]._centerPosition.Y <= -0.9341304 || _object3d[index2]._centerPosition.Y >= 0.9341304)
+            {
+                time_tangan_gaya_kiri *= -1;
+            }
+
+            _object3d[index1].translate(0f, 0.1f * time_tangan_gaya_kanan, 0f);
+            _object3d[index1].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_tangan_gaya_kanan);
+            _object3d[index2].translate(0f, 0.1f * time_tangan_gaya_kiri, 0f);
+            _object3d[index2].rotate(_object3d[center]._centerPosition, Vector3.UnitZ, time_tangan_gaya_kiri);
+        }
+
         protected override void OnUnload()
         {
             base.OnUnload();
